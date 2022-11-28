@@ -1,5 +1,19 @@
 #include <SimpleDHT.h>
 #include "OLED.h"
+#include <ESP8266WiFi.h>
+#include <PubSubClient.h>
+const char* ssid = "IoT_511";
+const char* password = "IoT_Test@";
+#define mqtt_server "192.168.0.66" // MQTT server 주소
+#define mqtt_port 1883 // port 번호
+#define mqtt_topic "test" // topic (자유롭게 작성}
+#define mqtt_user "IoT" // username
+#define mqtt_password "IoT_Test@" // password
+unsigned char pinLED=2;
+unsigned char S_connectLED=14;
+unsigned char pinSwitch=0;
+unsigned char pinState=HIGH;
+WiFiClient espClient;
 
 OLED display(4, 5);
 char strdata[100];
