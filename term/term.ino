@@ -2,7 +2,8 @@
 #include "OLED.h"
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
-/*const char* ssid = "IoT_511";
+
+const char* ssid = "IoT_511";
 const char* password = "IoT_Test@";
 #define mqtt_server "192.168.0.66" // MQTT server 주소
 #define mqtt_port 1883 // port 번호
@@ -12,25 +13,33 @@ const char* password = "IoT_Test@";
 
 unsigned char pinState=HIGH;
 WiFiClient espClient;
-*/
+
 OLED display(4, 5);
 char strdata[100];
 
 unsigned char Red = 2, Green = 15, Blue = 16;
 int pinDHT22 = 14;
 SimpleDHT22 dht22;
-int set_Temp = 28, set_Hum = 80;
+int set_Temp = 22, set_Hum = 30;
 int set_Light1 = 250, set_Light2 = 500, set_Light3 = 750;
 byte temperature = 0;
 byte humidity = 0;
 
 void setup() {
   Serial.begin(115200);
+
+  pinMode(2, OUTPUT);
+  pinMode(12,OUTPUT);
+  pinMode(13,OUTPUT);
+  pinMode(15, OUTPUT);
+  pinMode(16, OUTPUT);
+  
   display.begin();
   display.print("NT=");
   display.print(", ST=", 0,7);
   display.print("NH=", 1,0);
   display.print(", SH=", 1,7);
+  
 }
 
 void loop() {
